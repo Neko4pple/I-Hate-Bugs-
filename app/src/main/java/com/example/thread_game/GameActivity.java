@@ -25,7 +25,7 @@ public class GameActivity extends AppCompatActivity {
     TextView life; // 라이프 텍스트뷰 추가
     ImageView[] imgViewArr = new ImageView[16];
     int[] imageId = {R.id.card01, R.id.card02, R.id.card03, R.id.card04, R.id.card05, R.id.card06, R.id.card07, R.id.card08, R.id.card09, R.id.card10, R.id.card11, R.id.card12, R.id.card13, R.id.card14, R.id.card15, R.id.card16};
-    public static final int ran[] = {R.drawable.up_mole, R.drawable.up_mole1, R.drawable.up_rabbit, R.drawable.coin};
+    public static final int ran[] = {R.drawable.up_mole, R.drawable.up_rabbit, R.drawable.up_mole1, R.drawable.coin};
     int sc = 0;
     int cn = 0;
     int lifeCount = 5; // 라이프 개수 변수 추가
@@ -37,15 +37,20 @@ public class GameActivity extends AppCompatActivity {
 
     boolean isInFever = false;
     int feverLevel = 0;
-    final int[] feverThresholds = {5, 10, 20, 30};
+    boolean fever = false; // fever 변수 추가
+    final int[] feverThresholds = {10, 20, 30};
     final int[] feverColors = {R.color.white, R.color.yellow, R.color.blue, R.color.red};
+    final String TAG_Empty = "empty";
     int feverDuration = 0;
     int feverScore = 0;
+    int moleCount = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+
 
         coin = findViewById(R.id.coin_tv);
         coin.setText("Coin\n0");
@@ -55,6 +60,7 @@ public class GameActivity extends AppCompatActivity {
         life = findViewById(R.id.life_tv); // 라이프 텍스트뷰 연결
 
         for (int i = 0; i < imgViewArr.length; i++) {
+            final int position = i;
             imgViewArr[i] = (ImageView) findViewById(imageId[i]);
             imgViewArr[i].setImageResource(R.drawable.off);
 
@@ -63,25 +69,36 @@ public class GameActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (isInFever) {
                         if (((ImageView) v).getTag().toString().equals(TAG_Mole1)) {
-                            score.setText("Point : " + String.valueOf(sc += 4 * 100));
+                            score.setText("Point : " + String.valueOf(sc += (2 * (feverLevel + 1) * 100)));
                         } else if (((ImageView) v).getTag().toString().equals(TAG_Mole2)) {
-                            score.setText("Point : " + String.valueOf(sc -= 100));
+                            score.setText("Point : " + String.valueOf(sc -= (2 * (feverLevel + 1) * 100)));
                         } else if (((ImageView) v).getTag().toString().equals(TAG_Rabbit)) {
                             isInFever = false;
+                            fever = false;
                             feverLevel = 0;
                             feverDuration = 0;
                             feverScore = 0;
-                            score.setTextColor(getResources().getColor(R.color.white));
-                        } else if (((ImageView) v).getTag().toString().equals(TAG_Coin)) { // 코인 처리 부분 추가
-                                coin.setText("Coin\n" + String.valueOf(cn += 5));
-                                ((ImageView) v).setImageResource(R.drawable.off);
+                            lifeCount--; // Decrease life count
+                            life.setText("Life : " + lifeCount);
+                            if (lifeCount <= 0) {
+                                Toast.makeText(GameActivity.this, "Game Over", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+                                intent.putExtra("score", sc);
+                                startActivity(intent);
+                                finish();
+                                score.setTextColor(getResources().getColor(R.color.white));
+                            }
+                        } else if (((ImageView) v).getTag().toString().equals(TAG_Coin)) { // Coin handling
+                            coin.setText("Coin\n" + String.valueOf(cn += 5));
+                            ((ImageView) v).setImageResource(R.drawable.off);
                         }
                     } else {
-                        handleNormalClick(v); // 일반 클릭 처리 메서드 호출
+                        handleNormalClick(v, position); // Handle normal click
                     }
 
                     if (((ImageView) v).getTag().toString().equals(TAG_Mole1) ||
-                            ((ImageView) v).getTag().toString().equals(TAG_Mole2)) {
+                            ((ImageView) v).getTag().toString().equals(TAG_Mole2) ||
+                            ((ImageView) v).getTag().toString().equals(TAG_Rabbit)) {
                         ((ImageView) v).setImageResource(R.drawable.off);
                     }
                 }
@@ -89,8 +106,7 @@ public class GameActivity extends AppCompatActivity {
         }
         time.setText("Time : 20");
         score.setText("Point : 0");
-        life.setText("Life : " + lifeCount); // 라이프 개수 초기화
-
+        life.setText("Life : " + lifeCount); // Initialize life count
 
         new Thread(new Timer()).start();
         for (int i = 0; i < imgViewArr.length; i++) {
@@ -110,7 +126,7 @@ public class GameActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             for (int i = 0; i < 5; i++) {
-                int index = (int) (Math.random() * 4);  // 0부터 3까지의 값을 가지도록 수정
+                int index = (int) (Math.random() * 4);
                 imgViewArr[msg.arg1].setImageResource(ran[index]);
                 if (index == 0) {
                     imgViewArr[msg.arg1].setTag(TAG_Mole1);
@@ -124,7 +140,6 @@ public class GameActivity extends AppCompatActivity {
             }
         }
     };
-
 
     Handler offHandler = new Handler(Looper.getMainLooper()) {
         @Override
@@ -165,7 +180,6 @@ public class GameActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            int moleCount = 0;
             while (true) {
                 try {
                     Message msg1 = new Message();
@@ -181,43 +195,33 @@ public class GameActivity extends AppCompatActivity {
                     msg2.arg1 = index;
                     offHandler.sendMessage(msg2);
 
-                    if (!isInFever) {
-                        int currentScore = sc;
-                        moleCount++;
-
-                        for (int i = 0; i < feverThresholds.length; i++) {
-                            if (moleCount >= feverThresholds[i]) {
-                                isInFever = true;
-                                feverLevel = i + 2;
-                                feverDuration = 5 * feverLevel;
-                                feverScore = 2 * currentScore;
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        score.setText("Point : " + String.valueOf(feverScore));
-                                        score.setTextColor(getResources().getColor(feverColors[feverLevel]));
-                                    }
-                                });
-
-                                feverEndHandler.removeCallbacksAndMessages(null);
-                                feverEndHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        isInFever = false;
-                                        feverLevel = 0;
-                                        feverDuration = 0;
-                                        feverScore = 0;
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                score.setText("Point : " + String.valueOf(sc));
-                                                score.setTextColor(getResources().getColor(R.color.white));
-                                            }
-                                        });
-                                    }
-                                }, feverDuration * 1000);
-                                break;
-                            }
+                    if (isInFever) {
+                        feverDuration--;
+                        if (feverDuration <= 0) {
+                            isInFever = false;
+                            feverLevel = 0;
+                            feverScore = 0;
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    score.setText("Point : " + String.valueOf(sc));
+                                    score.setTextColor(getResources().getColor(R.color.white));
+                                }
+                            });
+                        }
+                    } else {
+                        if (!fever && sc >= feverThresholds[feverLevel]) {
+                            fever = true;
+                            feverLevel++;
+                            feverDuration = 5;
+                            feverScore = sc;
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    score.setText("Point : " + String.valueOf(feverScore));
+                                    score.setTextColor(getResources().getColor(feverColors[feverLevel]));
+                                }
+                            });
                         }
                     }
                 } catch (InterruptedException e) {
@@ -227,7 +231,13 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void handleNormalClick(View v) {
+
+
+
+
+
+
+    private void handleNormalClick(View v,int position) {
         if (((ImageView) v).getTag().toString().equals(TAG_Mole1)) {
             score.setText("Point : " + String.valueOf(sc += 100));
         } else if (((ImageView) v).getTag().toString().equals(TAG_Mole2)) {
@@ -248,7 +258,11 @@ public class GameActivity extends AppCompatActivity {
         } else if (((ImageView) v).getTag().toString().equals(TAG_Coin)) { // 코인 처리 부분 추가
             coin.setText("Coin\n" + String.valueOf(cn += 5));
             ((ImageView) v).setImageResource(R.drawable.off);
+        } else if (((ImageView) v).getTag().toString().equals(TAG_Empty)) { // 빈자리 처리 부분 추가
+
+            return;
         }
+        imgViewArr[position].setImageResource(R.drawable.off);
+        imgViewArr[position].setTag(TAG_Empty);
     }
 }
-

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#428a47"
+    android:background="@android:color/background_dark"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:id="@+id/toptitle"
@@ -35,103 +35,106 @@
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/background_sky">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
 
             <ImageView
                 android:id="@+id/card01"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                />
 
             <ImageView
                 android:id="@+id/card02"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                />
 
             <ImageView
                 android:id="@+id/card03"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
 
             <ImageView
                 android:id="@+id/card04"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:gravity="center" >
 
 
-            <ImageView
-                android:id="@+id/card05"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
 
-            <ImageView
-                android:id="@+id/card06"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                <ImageView
+                    android:id="@+id/card05"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    />
 
-            <ImageView
-                android:id="@+id/card07"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                <ImageView
+                    android:id="@+id/card06"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    />
 
-            <ImageView
-                android:id="@+id/card08"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                <ImageView
+                    android:id="@+id/card07"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"/>
+
+                <ImageView
+                    android:id="@+id/card08"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:gravity="center">
 
 
             <ImageView
                 android:id="@+id/card09"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                />
 
             <ImageView
                 android:id="@+id/card10"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                />
 
             <ImageView
                 android:id="@+id/card11"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
 
             <ImageView
                 android:id="@+id/card12"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="120dp"
-                android:layout_margin="5dp"
-                android:scaleType="fitXY" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
 
 
         </LinearLayout>
@@ -139,55 +142,65 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:gravity="center">
 
 
             <ImageView
                 android:id="@+id/card13"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                />
 
             <ImageView
                 android:id="@+id/card14"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                />
 
             <ImageView
                 android:id="@+id/card15"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
 
             <ImageView
                 android:id="@+id/card16"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="120dp"
-                android:scaleType="fitXY" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
 
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/life_tv"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Life : 5"
-        android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        android:orientation="vertical"
+        android:background="@drawable/background_mountain"
+    >
+        <TextView
+            android:id="@+id/life_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Life: 5"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/coin_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Coin: 0"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"/>
+        <TextView
+            android:id="@+id/coin_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Coin\n0"
+            android:textSize="18sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+
+
+
+
 
 </LinearLayout>
