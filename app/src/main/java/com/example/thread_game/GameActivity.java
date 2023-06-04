@@ -230,6 +230,8 @@ public class GameActivity extends AppCompatActivity {
                 sc = 0;
             }
         } else if (((ImageView) v).getTag().toString().equals(TAG_Rabbit)) {
+            //연타 하면 튕기는 오류 있음.
+            //연타 하면 라이프 두개 깎이는 오류 있음.
             lifeCount--; // 라이프 감소
             life.setText("Life : " + lifeCount);
             for (int j = lifeCount; j < lifeViewArr.length; j++) {
@@ -247,12 +249,10 @@ public class GameActivity extends AppCompatActivity {
             coin.setText("Coin\n" + String.valueOf(cn += 5));
             ((ImageView) v).setImageResource(R.drawable.off);
         } else if (((ImageView) v).getTag().toString().equals(TAG_Empty)) { // 빈자리 처리 부분 추가
+            //필요시 코드 추가
+        } else {
+        }
 
-            return;
-        }
-        else {
-            return;
-        }
         imgViewArr[position].setImageResource(R.drawable.off);
         imgViewArr[position].setTag(TAG_Empty);
     }
@@ -285,6 +285,9 @@ public class GameActivity extends AppCompatActivity {
         } else if (((ImageView) v).getTag().toString().equals(TAG_Coin)) { // Coin handling
             coin.setText("Coin\n" + String.valueOf(cn += 5));
             ((ImageView) v).setImageResource(R.drawable.off);
+        } else if (((ImageView) v).getTag().toString().equals(TAG_Empty)) { // 빈자리 처리 부분 추가
+            lifeCount--;
+        } else {
         }
     }
 
