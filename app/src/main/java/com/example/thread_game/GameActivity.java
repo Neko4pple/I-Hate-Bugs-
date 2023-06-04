@@ -73,39 +73,13 @@ public class GameActivity extends AppCompatActivity {
             final int position = i;
             imgViewArr[i] = (ImageView) findViewById(imageId[i]);
             imgViewArr[i].setImageResource(R.drawable.off);
+            imgViewArr[i].setTag(TAG_Empty);
 
             imgViewArr[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (isInFever) {
-                        if (((ImageView) v).getTag().toString().equals(TAG_Mole1)) {
-                            score.setText("Point : " + String.valueOf(sc += (2 * (feverLevel + 1) * 100)));
-                        } else if (((ImageView) v).getTag().toString().equals(TAG_Mole2)) {
-                            score.setText("Point : " + String.valueOf(sc -= (2 * (feverLevel + 1) * 100)));
-                        } else if (((ImageView) v).getTag().toString().equals(TAG_Rabbit)) {
-                            isInFever = false;
-                            fever = false;
-                            feverLevel = 0;
-                            feverDuration = 0;
-                            feverScore = 0;
-                            lifeCount--; // Decrease life count
-                            life.setText("Life : " + lifeCount);
-                            for (int j = lifeCount; j < lifeViewArr.length; j++) {
-                                //lifeViewArr[j] = (ImageView) findViewById(imagelifeID[j]);
-                                lifeViewArr[j].setImageResource(R.drawable.off);
-                            }
-                            if (lifeCount <= 0) {
-                                Toast.makeText(GameActivity.this, "Game Over", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(GameActivity.this, ResultActivity.class);
-                                intent.putExtra("score", sc);
-                                startActivity(intent);
-                                finish();
-                                score.setTextColor(getResources().getColor(R.color.white));
-                            }
-                        } else if (((ImageView) v).getTag().toString().equals(TAG_Coin)) { // Coin handling
-                            coin.setText("Coin\n" + String.valueOf(cn += 5));
-                            ((ImageView) v).setImageResource(R.drawable.off);
-                        }
+                        handleFeverClick(v, position);
                     } else {
                         handleNormalClick(v, position); // Handle normal click
                     }
@@ -247,11 +221,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
     private void handleNormalClick(View v,int position) {
         if (((ImageView) v).getTag().toString().equals(TAG_Mole1)) {
             score.setText("Point : " + String.valueOf(sc += 100));
@@ -281,7 +250,42 @@ public class GameActivity extends AppCompatActivity {
 
             return;
         }
+        else {
+            return;
+        }
         imgViewArr[position].setImageResource(R.drawable.off);
         imgViewArr[position].setTag(TAG_Empty);
     }
+
+    private void handleFeverClick(View v, int position){
+        if (((ImageView) v).getTag().toString().equals(TAG_Mole1)) {
+            score.setText("Point : " + String.valueOf(sc += (2 * (feverLevel + 1) * 100)));
+        } else if (((ImageView) v).getTag().toString().equals(TAG_Mole2)) {
+            score.setText("Point : " + String.valueOf(sc -= (2 * (feverLevel + 1) * 100)));
+        } else if (((ImageView) v).getTag().toString().equals(TAG_Rabbit)) {
+            isInFever = false;
+            fever = false;
+            feverLevel = 0;
+            feverDuration = 0;
+            feverScore = 0;
+            lifeCount--; // Decrease life count
+            life.setText("Life : " + lifeCount);
+            for (int j = lifeCount; j < lifeViewArr.length; j++) {
+                //lifeViewArr[j] = (ImageView) findViewById(imagelifeID[j]);
+                lifeViewArr[j].setImageResource(R.drawable.off);
+            }
+            if (lifeCount <= 0) {
+                Toast.makeText(GameActivity.this, "Game Over", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+                intent.putExtra("score", sc);
+                startActivity(intent);
+                finish();
+                score.setTextColor(getResources().getColor(R.color.white));
+            }
+        } else if (((ImageView) v).getTag().toString().equals(TAG_Coin)) { // Coin handling
+            coin.setText("Coin\n" + String.valueOf(cn += 5));
+            ((ImageView) v).setImageResource(R.drawable.off);
+        }
+    }
+
 }
