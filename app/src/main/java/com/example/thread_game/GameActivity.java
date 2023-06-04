@@ -24,8 +24,12 @@ public class GameActivity extends AppCompatActivity {
     TextView score;
     TextView life; // 라이프 텍스트뷰 추가
     ImageView[] imgViewArr = new ImageView[16];
+    ImageView[] lifeViewArr = new ImageView[5];
+
     int[] imageId = {R.id.card01, R.id.card02, R.id.card03, R.id.card04, R.id.card05, R.id.card06, R.id.card07, R.id.card08, R.id.card09, R.id.card10, R.id.card11, R.id.card12, R.id.card13, R.id.card14, R.id.card15, R.id.card16};
-    public static final int ran[] = {R.drawable.up_mole, R.drawable.up_rabbit, R.drawable.up_mole1, R.drawable.coin};
+    int[] imagelifeID = {R.id.life1, R.id.life2, R.id.life3, R.id.life4, R.id.life5};
+
+    public static final int ran[] = {R.drawable.up_mole, R.drawable.up_mole1, R.drawable.up_rabbit, R.drawable.coin};
     int sc = 0;
     int cn = 0;
     int lifeCount = 5; // 라이프 개수 변수 추가
@@ -59,6 +63,12 @@ public class GameActivity extends AppCompatActivity {
         score = findViewById(R.id.score_tv);
         life = findViewById(R.id.life_tv); // 라이프 텍스트뷰 연결
 
+        for(int i = 0; i < lifeCount; i++) {
+            lifeViewArr[i] = (ImageView) findViewById(imagelifeID[i]);
+            lifeViewArr[i].setImageResource(R.drawable.life);
+        }
+
+
         for (int i = 0; i < imgViewArr.length; i++) {
             final int position = i;
             imgViewArr[i] = (ImageView) findViewById(imageId[i]);
@@ -80,6 +90,10 @@ public class GameActivity extends AppCompatActivity {
                             feverScore = 0;
                             lifeCount--; // Decrease life count
                             life.setText("Life : " + lifeCount);
+                            for (int j = lifeCount; j < lifeViewArr.length; j++) {
+                                //lifeViewArr[j] = (ImageView) findViewById(imagelifeID[j]);
+                                lifeViewArr[j].setImageResource(R.drawable.off);
+                            }
                             if (lifeCount <= 0) {
                                 Toast.makeText(GameActivity.this, "Game Over", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(GameActivity.this, ResultActivity.class);
@@ -103,6 +117,7 @@ public class GameActivity extends AppCompatActivity {
                     }
                 }
             });
+
         }
         time.setText("Time : 20");
         score.setText("Point : 0");
@@ -248,6 +263,10 @@ public class GameActivity extends AppCompatActivity {
         } else if (((ImageView) v).getTag().toString().equals(TAG_Rabbit)) {
             lifeCount--; // 라이프 감소
             life.setText("Life : " + lifeCount);
+            for (int j = lifeCount; j < lifeViewArr.length; j++) {
+                //lifeViewArr[j] = (ImageView) findViewById(imagelifeID[j]);
+                lifeViewArr[j].setImageResource(R.drawable.off);
+            }
             if (lifeCount <= 0) {
                 Toast.makeText(GameActivity.this, "Game Over", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(GameActivity.this, ResultActivity.class);
