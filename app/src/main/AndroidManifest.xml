@@ -21,6 +21,8 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity android:name=".ResultActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity android:name=".ShopActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>
