@@ -1,4 +1,4 @@
-package com.example.thread_game;
+package com.oss.blockwindow;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;

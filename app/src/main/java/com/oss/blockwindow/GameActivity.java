@@ -1,4 +1,4 @@
-package com.example.thread_game;
+package com.oss.blockwindow;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -25,9 +25,11 @@ public class GameActivity extends AppCompatActivity {
     TextView life; // 라이프 텍스트뷰 추가
     ImageView[] imgViewArr = new ImageView[16];
     ImageView[] lifeViewArr = new ImageView[5];
+    ImageView[] coinViewArr = new ImageView[1];
 
     int[] imageId = {R.id.card01, R.id.card02, R.id.card03, R.id.card04, R.id.card05, R.id.card06, R.id.card07, R.id.card08, R.id.card09, R.id.card10, R.id.card11, R.id.card12, R.id.card13, R.id.card14, R.id.card15, R.id.card16};
     int[] imagelifeID = {R.id.life1, R.id.life2, R.id.life3, R.id.life4, R.id.life5};
+    int[] imageCoinID = {R.id.coin_img};
 
     public static final int ran[] = {R.drawable.up_mole, R.drawable.up_mole1, R.drawable.up_rabbit, R.drawable.coin};
     int sc = 0;
@@ -57,16 +59,21 @@ public class GameActivity extends AppCompatActivity {
 
 
         coin = findViewById(R.id.coin_tv);
-        coin.setText("Coin\n0");
+        coin.setText("0");
         feverEndHandler = new Handler();
         time = findViewById(R.id.time_tv);
         score = findViewById(R.id.score_tv);
-        life = findViewById(R.id.life_tv); // 라이프 텍스트뷰 연결
+        //life = findViewById(R.id.life_tv); // 라이프 텍스트뷰 연결
+
+
 
         for(int i = 0; i < lifeCount; i++) {
             lifeViewArr[i] = (ImageView) findViewById(imagelifeID[i]);
             lifeViewArr[i].setImageResource(R.drawable.life);
         }
+
+        coinViewArr[0] = (ImageView) findViewById(imageCoinID[0]);
+        coinViewArr[0].setImageResource(R.drawable.coin);
 
 
         for (int i = 0; i < imgViewArr.length; i++) {
@@ -95,7 +102,7 @@ public class GameActivity extends AppCompatActivity {
         }
         time.setText("Time : 20");
         score.setText("Point : 0");
-        life.setText("Life : " + lifeCount); // Initialize life count
+        //life.setText("Life : " + lifeCount); // Initialize life count
 
         new Thread(new Timer()).start();
         for (int i = 0; i < imgViewArr.length; i++) {
@@ -233,7 +240,7 @@ public class GameActivity extends AppCompatActivity {
             //연타 하면 튕기는 오류 있음.
             //연타 하면 라이프 두개 깎이는 오류 있음.
             lifeCount--; // 라이프 감소
-            life.setText("Life : " + lifeCount);
+            //life.setText("Life : " + lifeCount);
             for (int j = lifeCount; j < lifeViewArr.length; j++) {
                 //lifeViewArr[j] = (ImageView) findViewById(imagelifeID[j]);
                 lifeViewArr[j].setImageResource(R.drawable.off);
@@ -246,7 +253,7 @@ public class GameActivity extends AppCompatActivity {
                 finish();
             }
         } else if (((ImageView) v).getTag().toString().equals(TAG_Coin)) { // 코인 처리 부분 추가
-            coin.setText("Coin\n" + String.valueOf(cn += 5));
+            coin.setText(String.valueOf(cn += 5));
             ((ImageView) v).setImageResource(R.drawable.off);
         } else if (((ImageView) v).getTag().toString().equals(TAG_Empty)) { // 빈자리 처리 부분 추가
             //필요시 코드 추가
@@ -269,7 +276,7 @@ public class GameActivity extends AppCompatActivity {
             feverDuration = 0;
             feverScore = 0;
             lifeCount--; // Decrease life count
-            life.setText("Life : " + lifeCount);
+            //life.setText("Life : " + lifeCount);
             for (int j = lifeCount; j < lifeViewArr.length; j++) {
                 //lifeViewArr[j] = (ImageView) findViewById(imagelifeID[j]);
                 lifeViewArr[j].setImageResource(R.drawable.off);
@@ -283,7 +290,7 @@ public class GameActivity extends AppCompatActivity {
                 score.setTextColor(getResources().getColor(R.color.white));
             }
         } else if (((ImageView) v).getTag().toString().equals(TAG_Coin)) { // Coin handling
-            coin.setText("Coin\n" + String.valueOf(cn += 5));
+            coin.setText( String.valueOf(cn += 5));
             ((ImageView) v).setImageResource(R.drawable.off);
         } else if (((ImageView) v).getTag().toString().equals(TAG_Empty)) { // 빈자리 처리 부분 추가
             lifeCount--;
