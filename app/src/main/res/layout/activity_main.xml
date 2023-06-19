@@ -3,160 +3,163 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-    <TextView
-        android:id="@+id/title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="32dp"
-        android:rotationX="0"
-        android:text="방충망을 막아라!"
-        android:textColor="#fed231"
-        android:textSize="35dp"
-        android:textStyle="italic" />
+    <!--    <TextView-->
+<!--        android:id="@+id/title_tv"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="150dp"-->
+<!--        android:layout_marginBottom="32dp"-->
+<!--        android:rotationX="0"-->
+<!--        android:text="방충망을 막아라!"-->
+<!--        android:textColor="#fed231"-->
+<!--        android:textSize="35dp"-->
+<!--        android:textStyle="italic" />-->
 
-    <LinearLayout
-        android:id="@+id/info_ly"
+<!--    <LinearLayout-->
+<!--        android:id="@+id/info_ly"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/title_tv"-->
+<!--        android:layout_marginLeft="32dp"-->
+<!--        android:layout_marginRight="32dp"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginBottom="4dp"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="64dp"-->
+<!--                android:layout_height="64dp"-->
+<!--                android:layout_marginRight="16dp"-->
+<!--                android:src="@drawable/mole" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="+200 point "-->
+<!--                android:textColor="#000000"-->
+<!--                android:textSize="22sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="70dp"-->
+<!--            android:layout_marginBottom="4dp"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="64dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginRight="16dp"-->
+<!--                android:src="@drawable/mole1" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:text="-100 point "-->
+<!--                android:textColor="#ec1c24"-->
+<!--                android:textSize="22sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="70dp"-->
+<!--            android:layout_marginBottom="4dp"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="64dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginRight="16dp"-->
+<!--                android:src="@drawable/rabbit" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="-1 life"-->
+<!--                android:textColor="#ec1c24"-->
+<!--                android:textSize="22sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="70dp"-->
+<!--            android:layout_marginBottom="4dp"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="64dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginRight="16dp"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:src="@drawable/coin" />-->
+
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="#ec1c24"-->
+<!--                android:textSize="22sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+
+    <VideoView
+        android:id="@+id/videoview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title_tv"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="4dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/mole" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+200 point "
-                android:textColor="#000000"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginBottom="4dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/mole1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:text="-100 point "
-                android:textColor="#ec1c24"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginBottom="4dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/rabbit" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-1 life"
-                android:textColor="#ec1c24"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginBottom="4dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="16dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/coin" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#ec1c24"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-5dp"
+        android:layout_marginBottom="5dp"></VideoView>
 
     <Button
         android:id="@+id/startBtn"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_below="@id/info_ly"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="#fed231"
-        android:text="start"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:layout_width="409dp"
+        android:layout_height="608dp"
+
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+
+        android:background="@null"
+        />
 
     <Button
         android:id="@+id/shop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="630dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="#FF9E80"
-        android:text="shop"
-        android:textStyle="bold"
-        />
+        android:layout_width="83dp"
+        android:layout_height="61dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/shop" />
 
-    <TextView
-        android:id="@+id/coinTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="115dp"
-        android:layout_marginLeft="115dp"
-        android:layout_marginTop="474dp"
-        android:text="Coins: 0"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
+    <!--    <TextView-->
+<!--        android:id="@+id/coinTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="115dp"-->
+<!--        android:layout_marginLeft="115dp"-->
+<!--        android:layout_marginTop="474dp"-->
+<!--        android:text="Coins: 0"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:textSize="20sp" />-->
 
 
 </RelativeLayout>

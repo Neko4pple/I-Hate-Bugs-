@@ -31,7 +31,7 @@ public class GameActivity extends AppCompatActivity {
     int[] imagelifeID = {R.id.life1, R.id.life2, R.id.life3, R.id.life4, R.id.life5};
     int[] imageCoinID = {R.id.coin_img};
 
-    public static final int ran[] = {R.drawable.up_mole, R.drawable.up_mole1, R.drawable.up_rabbit, R.drawable.coin};
+    public static final int ran[] = {R.drawable.up_bug1, R.drawable.up_bird1, R.drawable.up_bug2, R.drawable.coin};
     int sc = 0;
     int cn = 0;
     int lifeCount = 5; // 라이프 개수 변수 추가
