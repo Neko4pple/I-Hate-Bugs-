@@ -33,7 +33,6 @@ public class GameActivity extends AppCompatActivity {
 
     public static final int ran[] = {R.drawable.up_bug1, R.drawable.up_bird1, R.drawable.up_bug2, R.drawable.coin};
     int sc = 0;
-
     int cn = 0;
     int lifeCount = 5; // 라이프 개수 변수 추가
 
