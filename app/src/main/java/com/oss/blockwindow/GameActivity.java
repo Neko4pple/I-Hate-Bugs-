@@ -22,7 +22,6 @@ public class GameActivity extends AppCompatActivity {
     TextView coin;
     TextView time;
     TextView score;
-    TextView life; // 라이프 텍스트뷰 추가
     ImageView[] imgViewArr = new ImageView[16];
     ImageView[] lifeViewArr = new ImageView[5];
     ImageView[] coinViewArr = new ImageView[1];
@@ -36,9 +35,9 @@ public class GameActivity extends AppCompatActivity {
     int cn = 0;
     int lifeCount = 5; // 라이프 개수 변수 추가
 
-    final String TAG_Mole1 = "mole";
-    final String TAG_Mole2 = "mole1";
-    final String TAG_Rabbit = "rabbit";
+    final String TAG_Bug1 = "bug1";
+    final String TAG_Bird = "bird";
+    final String TAG_Bug2 = "bug2";
     final String TAG_Coin = "coin";
 
     boolean isInFever = false;
@@ -49,7 +48,7 @@ public class GameActivity extends AppCompatActivity {
     final String TAG_Empty = "empty";
     int feverDuration = 0;
     int feverScore = 0;
-    int moleCount = 0;
+    int bugCount = 0;
 
 
     @Override
@@ -57,15 +56,11 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
-
         coin = findViewById(R.id.coin_tv);
         coin.setText("0");
         feverEndHandler = new Handler();
         time = findViewById(R.id.time_tv);
         score = findViewById(R.id.score_tv);
-        //life = findViewById(R.id.life_tv); // 라이프 텍스트뷰 연결
-
-
 
         for(int i = 0; i < lifeCount; i++) {
             lifeViewArr[i] = (ImageView) findViewById(imagelifeID[i]);
@@ -74,7 +69,6 @@ public class GameActivity extends AppCompatActivity {
 
         coinViewArr[0] = (ImageView) findViewById(imageCoinID[0]);
         coinViewArr[0].setImageResource(R.drawable.coin);
-
 
         for (int i = 0; i < imgViewArr.length; i++) {
             final int position = i;
@@ -91,9 +85,9 @@ public class GameActivity extends AppCompatActivity {
                         handleNormalClick(v, position); // Handle normal click
                     }
 
-                    if (((ImageView) v).getTag().toString().equals(TAG_Mole1) ||
-                            ((ImageView) v).getTag().toString().equals(TAG_Mole2) ||
-                            ((ImageView) v).getTag().toString().equals(TAG_Rabbit)) {
+                    if (((ImageView) v).getTag().toString().equals(TAG_Bug1) ||
+                            ((ImageView) v).getTag().toString().equals(TAG_Bird) ||
+                            ((ImageView) v).getTag().toString().equals(TAG_Bug2)) {
                         ((ImageView) v).setImageResource(R.drawable.off);
                     }
                 }
@@ -125,11 +119,11 @@ public class GameActivity extends AppCompatActivity {
                 int index = (int) (Math.random() * 4);
                 imgViewArr[msg.arg1].setImageResource(ran[index]);
                 if (index == 0) {
-                    imgViewArr[msg.arg1].setTag(TAG_Mole1);
+                    imgViewArr[msg.arg1].setTag(TAG_Bug1);
                 } else if (index == 1) {
-                    imgViewArr[msg.arg1].setTag(TAG_Mole2);
+                    imgViewArr[msg.arg1].setTag(TAG_Bird);
                 } else if (index == 2) {
-                    imgViewArr[msg.arg1].setTag(TAG_Rabbit);
+                    imgViewArr[msg.arg1].setTag(TAG_Bug2);
                 } else {
                     imgViewArr[msg.arg1].setTag(TAG_Coin);
                 }
@@ -229,14 +223,14 @@ public class GameActivity extends AppCompatActivity {
 
 
     private void handleNormalClick(View v,int position) {
-        if (((ImageView) v).getTag().toString().equals(TAG_Mole1)) {
+        if (((ImageView) v).getTag().toString().equals(TAG_Bug1)) {
             score.setText("Point : " + String.valueOf(sc += 100));
-        } else if (((ImageView) v).getTag().toString().equals(TAG_Mole2)) {
+        } else if (((ImageView) v).getTag().toString().equals(TAG_Bird)) {
             score.setText("Point : " + String.valueOf(sc -= 100));
             if (sc < 0) {
                 sc = 0;
             }
-        } else if (((ImageView) v).getTag().toString().equals(TAG_Rabbit)) {
+        } else if (((ImageView) v).getTag().toString().equals(TAG_Bug2)) {
             //연타 하면 튕기는 오류 있음.
             //연타 하면 라이프 두개 깎이는 오류 있음.
             lifeCount--; // 라이프 감소
@@ -265,11 +259,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void handleFeverClick(View v, int position){
-        if (((ImageView) v).getTag().toString().equals(TAG_Mole1)) {
+        if (((ImageView) v).getTag().toString().equals(TAG_Bug1)) {
             score.setText("Point : " + String.valueOf(sc += (2 * (feverLevel + 1) * 100)));
-        } else if (((ImageView) v).getTag().toString().equals(TAG_Mole2)) {
+        } else if (((ImageView) v).getTag().toString().equals(TAG_Bird)) {
             score.setText("Point : " + String.valueOf(sc -= (2 * (feverLevel + 1) * 100)));
-        } else if (((ImageView) v).getTag().toString().equals(TAG_Rabbit)) {
+        } else if (((ImageView) v).getTag().toString().equals(TAG_Bug2)) {
             isInFever = false;
             fever = false;
             feverLevel = 0;

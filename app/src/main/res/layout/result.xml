@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:background="#428a47"
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/scoreTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="60dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,6 +27,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="#fed231"
+            android:text="0"
             android:textSize="35sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -34,7 +35,7 @@
         android:id="@+id/coinTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="120dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,6 +55,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="#fed231"
+            android:text="0"
             android:textSize="35sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -61,7 +63,8 @@
         android:id="@+id/ly_saveid"
         android:layout_below="@+id/scoreTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp">
 
         <EditText
             android:id="@+id/id"
@@ -76,7 +79,7 @@
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="저장"
+            android:text="Save"
             android:id="@+id/save"
             android:layout_marginStart="20dp" />
 
@@ -140,5 +143,12 @@
         android:background="#fed231"
         android:text="Main"
         android:textStyle="bold" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="310dp"-->
+<!--        android:layout_marginTop="210dp"-->
+<!--        app:srcCompat="@drawable/logo" />-->
 
 </RelativeLayout>
