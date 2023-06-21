@@ -98,8 +98,9 @@ public class GameActivity extends AppCompatActivity {
                 }
             });
 
+
         }
-        time.setText("Time : 20");
+        time.setText("Time : 20"); // time 20으로 변환
         score.setText("Point : 0");
         //life.setText("Life : " + lifeCount); // Initialize life count
 
