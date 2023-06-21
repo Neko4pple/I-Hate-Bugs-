@@ -2,6 +2,7 @@ package com.oss.blockwindow;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -55,6 +56,10 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.background_music);
+        mediaPlayer.setLooping(true); // to set the loop
+        mediaPlayer.start();
 
         coin = findViewById(R.id.coin_tv);
         coin.setText("0");
@@ -156,6 +161,7 @@ public class GameActivity extends AppCompatActivity {
             }
             Intent intent = new Intent(GameActivity.this, ResultActivity.class);
             intent.putExtra("score", sc);
+            intent.putExtra("coin", cn);
             startActivity(intent);
             finish();
         }
@@ -243,6 +249,7 @@ public class GameActivity extends AppCompatActivity {
                 Toast.makeText(GameActivity.this, "Game Over", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(GameActivity.this, ResultActivity.class);
                 intent.putExtra("score", sc);
+                intent.putExtra("coin", 0);
                 startActivity(intent);
                 finish();
             }
@@ -279,6 +286,7 @@ public class GameActivity extends AppCompatActivity {
                 Toast.makeText(GameActivity.this, "Game Over", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(GameActivity.this, ResultActivity.class);
                 intent.putExtra("score", sc);
+                intent.putExtra("coin", 0);
                 startActivity(intent);
                 finish();
                 score.setTextColor(getResources().getColor(R.color.white));
