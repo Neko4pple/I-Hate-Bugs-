@@ -197,7 +197,7 @@ public class GameActivity extends AppCompatActivity {
                             });
                         }
                     } else {
-                        if (bugCount >= 5) {
+                        if (bugCount >= 10) {
                             isInFever = true;
                             feverDuration = 5;
                             runOnUiThread(new Runnable() {
@@ -291,7 +291,8 @@ public class GameActivity extends AppCompatActivity {
             lifeCount--;
         } else {
         }
-        if (bugCount >= 5) {
+
+        if (bugCount >= 10) {
             isInFever = true;
             feverDuration = 5;
             score.setTextColor(getResources().getColor(R.color.yellow));
