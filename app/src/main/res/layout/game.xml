@@ -179,7 +179,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:orientation="vertical"
         android:background="@drawable/background_mountain"
         >
@@ -224,24 +224,36 @@
                 android:layout_weight="0"
                 android:scaleType="fitXY" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/life_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Life"
-            android:textColor="@android:color/background_dark"
-            android:textSize="18sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/life_tv"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Life"-->
+<!--            android:textColor="@android:color/background_dark"-->
+<!--            android:textSize="18sp" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/coin_img"
+                android:layout_width="30dp"
+                android:layout_margin="5dp"
+                android:layout_height="30dp"
+                android:layout_weight="0"
+                android:scaleType="fitXY" />
+            <TextView
+                android:id="@+id/coin_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="25sp"
+                android:textColor="@android:color/black"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="2dp" />
+            ></LinearLayout>
 
-        <TextView
-            android:id="@+id/coin_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Coin\n0"
-            android:textSize="18sp"
-            android:textColor="@android:color/holo_red_dark"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp" />
+
     </LinearLayout>
 
 

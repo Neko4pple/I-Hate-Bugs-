@@ -1,96 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:background="#428a47"
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/scoreTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="60dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="Score : "
-            android:textSize="35dp"
+            android:textSize="35sp"
             android:paddingLeft="80dp"
             android:textStyle="bold"
-            android:textColor="#fed231">
+            android:textColor="#fed231"
+            android:layout_marginStart="20dp"
+            android:paddingStart="80dp">
         </TextView>
+
         <TextView
             android:id="@+id/tv_finalScore"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="#fed231"
-            android:textSize="35dp"
-            android:textStyle="bold"></TextView>
+            android:text="0"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/coinTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Coin : "
+            android:textSize="35sp"
+            android:paddingLeft="80dp"
+            android:textStyle="bold"
+            android:textColor="#fed231"
+            android:layout_marginStart="20dp"
+            android:paddingStart="80dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_finalCoin"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColor="#fed231"
+            android:text="0"
+            android:textSize="35sp"
+            android:textStyle="bold" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/ly_saveid"
         android:layout_below="@+id/scoreTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp">
+
         <EditText
             android:id="@+id/id"
             android:layout_marginLeft="20dp"
             android:hint="Ranking에 등록할 ID를 입력하세요."
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></EditText>
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:layout_marginStart="20dp" />
+
         <Button
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="저장"
-            android:id="@+id/save"></Button>
+            android:text="Save"
+            android:id="@+id/save"
+            android:layout_marginStart="20dp" />
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/Ranking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ranking"
+        android:textSize="40sp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/ly_saveid"
+        android:textStyle="bold"
+        android:layout_marginStart="120dp" />
+    <LinearLayout
+        android:layout_below="@+id/Ranking"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp">
+
         <TextView
-            android:id="@+id/Ranking"
-            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/tv_rankid"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Ranking"
-            android:textSize="40dp"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/ly_saveid"
-            android:textStyle="bold"></TextView>
-        <LinearLayout
-            android:layout_below="@+id/Ranking"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/tv_rankid"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textSize="40dp"
-                android:textStyle="bold"></TextView>
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/tv_rankscore"
-                android:textSize="40dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"></TextView>
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/tv_rankscore"
+            android:textSize="40sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
 
-        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_replay"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="#fed231"
         android:text="replay"
-        android:textStyle="bold"
-        android:background="#fed231"></Button>
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/bt_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="77dp"
+        android:background="#fed231"
+        android:text="Main"
+        android:textStyle="bold" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="310dp"-->
+<!--        android:layout_marginTop="210dp"-->
+<!--        app:srcCompat="@drawable/logo" />-->
 
 </RelativeLayout>
