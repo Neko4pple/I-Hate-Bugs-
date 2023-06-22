@@ -197,7 +197,7 @@ public class GameActivity extends AppCompatActivity {
                             });
                         }
                     } else {
-                        if (bugCount >= 10) {
+                        if (bugCount >= 5) {
                             isInFever = true;
                             feverDuration = 5;
                             runOnUiThread(new Runnable() {
@@ -222,7 +222,6 @@ public class GameActivity extends AppCompatActivity {
             bugCount++; // bugCount 값을 감소시킵니다.
             if (bugCount <= 0) {
                 isInFever = false;
-                feverLevel = 0;
                 feverDuration = 0;
                 score.setTextColor(getResources().getColor(R.color.white));
             }
@@ -252,18 +251,15 @@ public class GameActivity extends AppCompatActivity {
         } else if (((ImageView) v).getTag().toString().equals(TAG_Empty)) { // 빈자리 처리 부분 추가
         } else {
         }
-
         imgViewArr[position].setImageResource(R.drawable.off);
         imgViewArr[position].setTag(TAG_Empty);
     }
 
     private void handleFeverClick(View v, int position) {
         if (((ImageView) v).getTag().toString().equals(TAG_Bug1)) {
-            score.setText("Point : " + String.valueOf(sc += 300));
             bugCount++;
             if (bugCount <= 0) {
                 isInFever = false;
-                feverLevel = 0;
                 feverDuration = 0;
                 score.setTextColor(getResources().getColor(R.color.white));
             }
@@ -291,11 +287,19 @@ public class GameActivity extends AppCompatActivity {
             lifeCount--;
         } else {
         }
-
-        if (bugCount >= 10) {
+        if (bugCount >= 5 && bugCount < 10) {
             isInFever = true;
+            score.setText("Point : " + String.valueOf(sc += 200));
             feverDuration = 5;
             score.setTextColor(getResources().getColor(R.color.yellow));
+        } else if (bugCount >= 10 && bugCount < 15) {
+            isInFever = true;
+            score.setText("Point : " + String.valueOf(sc += 300));
+            score.setTextColor(getResources().getColor(R.color.blue));
+        } else if (bugCount >= 15) {
+            isInFever = true;
+            score.setText("Point : " + String.valueOf(sc += 400));
+            score.setTextColor(getResources().getColor(R.color.red));
         }
     }
 }
