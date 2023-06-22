@@ -48,6 +48,9 @@ public class ResultActivity extends AppCompatActivity {
         score = getIntent().getIntExtra("score",-1);
         coin = getIntent().getIntExtra("coin", 0);
 
+        CoinStack coinStack = new CoinStack(this);
+        coinStack.setCoin(coinStack.getCoin()+coin);
+
         tv_finalScore.setText(String.valueOf(score));
         tv_finalCoin.setText(String.valueOf(coin));
 
