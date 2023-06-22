@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_shop">
+    <TextView
+        android:id="@+id/coinTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+
+    <Button
+        android:id="@+id/buy_X2Coin"
+        android:layout_width="195dp"
+        android:layout_height="67dp"
+        android:background="#00FFFFFF"
+        android:layout_marginTop="220dp"
+        android:layout_gravity="center"
+        />
+
+    <Button
+        android:id="@+id/buy_button_life"
+        android:layout_width="204dp"
+        android:layout_height="72dp"
+        android:background="#00FFFFFF"
+        android:layout_marginTop="35dp"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/buy_X2Score"
+        android:layout_width="207dp"
+        android:layout_height="65dp"
+        android:background="#00FFFFFF"
+        android:layout_marginTop="35dp"
+        android:layout_gravity="center"/>
+
+
+</LinearLayout>
