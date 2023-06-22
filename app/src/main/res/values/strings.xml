@@ -1,3 +1,7 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">방충망을 막아라!</string>
+=======
+    <string name="app_name">Thread_Game</string>
+>>>>>>> f632444bd0148b6db9534ab7ff1384665307b0af
 </resources>

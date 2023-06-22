@@ -2,9 +2,16 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 30
+<<<<<<< HEAD
 
     defaultConfig {
         applicationId "oss.projectteam7.bangchungmang"
+=======
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.example.thread_game"
+>>>>>>> f632444bd0148b6db9534ab7ff1384665307b0af
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -15,7 +22,11 @@ android {
 
     buildTypes {
         release {
+<<<<<<< HEAD
             minifyEnabled true
+=======
+            minifyEnabled false
+>>>>>>> f632444bd0148b6db9534ab7ff1384665307b0af
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

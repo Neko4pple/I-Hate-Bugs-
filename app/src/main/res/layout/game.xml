@@ -179,7 +179,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="200dp"
+=======
+        android:layout_height="wrap_content"
+>>>>>>> f632444bd0148b6db9534ab7ff1384665307b0af
         android:orientation="vertical"
         android:background="@drawable/background_mountain"
         >
@@ -224,6 +228,7 @@
                 android:layout_weight="0"
                 android:scaleType="fitXY" />
         </LinearLayout>
+<<<<<<< HEAD
 <!--        <TextView-->
 <!--            android:id="@+id/life_tv"-->
 <!--            android:layout_width="wrap_content"-->
@@ -254,6 +259,26 @@
             ></LinearLayout>
 
 
+=======
+        <TextView
+            android:id="@+id/life_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Life"
+            android:textColor="@android:color/background_dark"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/coin_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Coin\n0"
+            android:textSize="18sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp" />
+>>>>>>> f632444bd0148b6db9534ab7ff1384665307b0af
     </LinearLayout>
 
 

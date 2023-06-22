@@ -1,27 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="com.oss.blockwindow">
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
+=======
+    package="com.example.thread_game">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+>>>>>>> f632444bd0148b6db9534ab7ff1384665307b0af
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+<<<<<<< HEAD
             android:name="com.oss.blockwindow.MainActivity"
+=======
+            android:name=".MainActivity"
+>>>>>>> f632444bd0148b6db9534ab7ff1384665307b0af
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name="com.oss.blockwindow.GameActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity android:name="com.oss.blockwindow.ResultActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity android:name="com.oss.blockwindow.ShopActivity"
+=======
+        <activity android:name=".GameActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity android:name=".ResultActivity"
+>>>>>>> f632444bd0148b6db9534ab7ff1384665307b0af
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
