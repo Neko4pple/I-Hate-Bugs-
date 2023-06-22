@@ -2,7 +2,6 @@ package com.oss.blockwindow;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +14,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
+import android.util.Log;
+
 
 public class GameActivity extends AppCompatActivity {
 
@@ -32,8 +33,8 @@ public class GameActivity extends AppCompatActivity {
     int[] imageCoinID = {R.id.coin_img};
 
     public static final int ran[] = {R.drawable.up_bug1, R.drawable.up_bird1, R.drawable.up_bug2, R.drawable.coin};
-    int sc = 0;
-    int cn = 0;
+    int sc = 0, plusScore = 100;
+    int cn = 0, plusCoin = 50;
     int lifeCount = 5; // 라이프 개수 변수 추가
 
     final String TAG_Bug1 = "bug1";
@@ -43,12 +44,8 @@ public class GameActivity extends AppCompatActivity {
 
     boolean isInFever = false;
     int feverLevel = 0;
-    boolean fever = false; // fever 변수 추가
-    final int[] feverThresholds = {10, 20, 30};
-    final int[] feverColors = {R.color.white, R.color.yellow, R.color.blue, R.color.red};
     final String TAG_Empty = "empty";
     int feverDuration = 0;
-    int feverScore = 0;
     int bugCount = 0;
 
 
@@ -57,9 +54,12 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.background_music);
-        mediaPlayer.setLooping(true); // to set the loop
-        mediaPlayer.start();
+        int item = getIntent().getIntExtra("whichItem",-1);
+        if(item == 0) {
+            plusScore = 200;
+        } if (item == 1) {
+            plusCoin = 10;
+        }
 
         coin = findViewById(R.id.coin_tv);
         coin.setText("0");
@@ -67,7 +67,7 @@ public class GameActivity extends AppCompatActivity {
         time = findViewById(R.id.time_tv);
         score = findViewById(R.id.score_tv);
 
-        for(int i = 0; i < lifeCount; i++) {
+        for (int i = 0; i < lifeCount; i++) {
             lifeViewArr[i] = (ImageView) findViewById(imagelifeID[i]);
             lifeViewArr[i].setImageResource(R.drawable.life);
         }
@@ -101,7 +101,6 @@ public class GameActivity extends AppCompatActivity {
         }
         time.setText("Time : 20");
         score.setText("Point : 0");
-        //life.setText("Life : " + lifeCount); // Initialize life count
 
         new Thread(new Timer()).start();
         for (int i = 0; i < imgViewArr.length; i++) {
@@ -144,7 +143,7 @@ public class GameActivity extends AppCompatActivity {
     };
 
     public class Timer implements Runnable {
-        final int TIME = 60;
+        final int TIME = 20;
 
         @Override
         public void run() {
@@ -179,13 +178,13 @@ public class GameActivity extends AppCompatActivity {
             while (true) {
                 try {
                     Message msg1 = new Message();
-                    int offTime = new Random().nextInt(6000) + 1000;
+                    int offTime = new Random().nextInt(2000) + 500;
                     Thread.sleep(offTime);
 
                     msg1.arg1 = index;
                     onHandler.sendMessage(msg1);
 
-                    int onTime = new Random().nextInt(3000) + 500;
+                    int onTime = new Random().nextInt(2000) + 500;
                     Thread.sleep(onTime);
                     Message msg2 = new Message();
                     msg2.arg1 = index;
@@ -193,29 +192,24 @@ public class GameActivity extends AppCompatActivity {
 
                     if (isInFever) {
                         feverDuration--;
-                        if (feverDuration <= 0) {
+                        if (bugCount <= 0) {
                             isInFever = false;
                             feverLevel = 0;
-                            feverScore = 0;
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    score.setText("Point : " + String.valueOf(sc));
                                     score.setTextColor(getResources().getColor(R.color.white));
                                 }
                             });
                         }
                     } else {
-                        if (!fever && sc >= feverThresholds[feverLevel]) {
-                            fever = true;
-                            feverLevel++;
+                        if (bugCount >= 5) {
+                            isInFever = true;
                             feverDuration = 5;
-                            feverScore = sc;
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    score.setText("Point : " + String.valueOf(feverScore));
-                                    score.setTextColor(getResources().getColor(feverColors[feverLevel]));
+                                    score.setTextColor(getResources().getColor(R.color.yellow));
                                 }
                             });
                         }
@@ -228,21 +222,23 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-    private void handleNormalClick(View v,int position) {
+    private void handleNormalClick(View v, int position) {
         if (((ImageView) v).getTag().toString().equals(TAG_Bug1)) {
-            score.setText("Point : " + String.valueOf(sc += 100));
+            score.setText("Point : " + String.valueOf(sc += plusScore));
+            bugCount++;
+            if (bugCount <= 0) {
+                isInFever = false;
+                feverDuration = 0;
+                score.setTextColor(getResources().getColor(R.color.white));
+            }
         } else if (((ImageView) v).getTag().toString().equals(TAG_Bird)) {
-            score.setText("Point : " + String.valueOf(sc -= 100));
+            score.setText("Point : " + String.valueOf(sc -= plusScore));
             if (sc < 0) {
                 sc = 0;
             }
         } else if (((ImageView) v).getTag().toString().equals(TAG_Bug2)) {
-            //연타 하면 튕기는 오류 있음.
-            //연타 하면 라이프 두개 깎이는 오류 있음.
-            lifeCount--; // 라이프 감소
-            //life.setText("Life : " + lifeCount);
+            lifeCount--;
             for (int j = lifeCount; j < lifeViewArr.length; j++) {
-                //lifeViewArr[j] = (ImageView) findViewById(imagelifeID[j]);
                 lifeViewArr[j].setImageResource(R.drawable.off);
             }
             if (lifeCount <= 0) {
@@ -253,33 +249,30 @@ public class GameActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        } else if (((ImageView) v).getTag().toString().equals(TAG_Coin)) { // 코인 처리 부분 추가
-            coin.setText(String.valueOf(cn += 5));
+        } else if (((ImageView) v).getTag().toString().equals(TAG_Coin)) {
+            coin.setText(String.valueOf(cn += plusCoin));
             ((ImageView) v).setImageResource(R.drawable.off);
         } else if (((ImageView) v).getTag().toString().equals(TAG_Empty)) { // 빈자리 처리 부분 추가
-            //필요시 코드 추가
         } else {
         }
-
         imgViewArr[position].setImageResource(R.drawable.off);
         imgViewArr[position].setTag(TAG_Empty);
     }
 
-    private void handleFeverClick(View v, int position){
+    private void handleFeverClick(View v, int position) {
         if (((ImageView) v).getTag().toString().equals(TAG_Bug1)) {
-            score.setText("Point : " + String.valueOf(sc += (2 * (feverLevel + 1) * 100)));
+            bugCount++;
+            if (bugCount <= 0) {
+                isInFever = false;
+                feverDuration = 0;
+                score.setTextColor(getResources().getColor(R.color.white));
+            }
         } else if (((ImageView) v).getTag().toString().equals(TAG_Bird)) {
-            score.setText("Point : " + String.valueOf(sc -= (2 * (feverLevel + 1) * 100)));
+            score.setText("Point : " + String.valueOf(sc -= plusScore*3));
         } else if (((ImageView) v).getTag().toString().equals(TAG_Bug2)) {
-            isInFever = false;
-            fever = false;
-            feverLevel = 0;
-            feverDuration = 0;
-            feverScore = 0;
-            lifeCount--; // Decrease life count
-            //life.setText("Life : " + lifeCount);
+            lifeCount--;
+            bugCount = 0;
             for (int j = lifeCount; j < lifeViewArr.length; j++) {
-                //lifeViewArr[j] = (ImageView) findViewById(imagelifeID[j]);
                 lifeViewArr[j].setImageResource(R.drawable.off);
             }
             if (lifeCount <= 0) {
@@ -291,13 +284,25 @@ public class GameActivity extends AppCompatActivity {
                 finish();
                 score.setTextColor(getResources().getColor(R.color.white));
             }
-        } else if (((ImageView) v).getTag().toString().equals(TAG_Coin)) { // Coin handling
-            coin.setText( String.valueOf(cn += 5));
+        } else if (((ImageView) v).getTag().toString().equals(TAG_Coin)) {
+            coin.setText(String.valueOf(cn += plusCoin));
             ((ImageView) v).setImageResource(R.drawable.off);
-        } else if (((ImageView) v).getTag().toString().equals(TAG_Empty)) { // 빈자리 처리 부분 추가
+        } else if (((ImageView) v).getTag().toString().equals(TAG_Empty)) {
             lifeCount--;
         } else {
         }
+        if (bugCount >= 5 && bugCount < 10) {
+            isInFever = true;
+            score.setText("Point : " + String.valueOf(sc += plusScore*2));
+            score.setTextColor(getResources().getColor(R.color.yellow));
+        } else if (bugCount >= 10 && bugCount < 15) {
+            isInFever = true;
+            score.setText("Point : " + String.valueOf(sc += plusScore*3));
+            score.setTextColor(getResources().getColor(R.color.blue));
+        } else if (bugCount >= 15) {
+            isInFever = true;
+            score.setText("Point : " + String.valueOf(sc += plusScore*4));
+            score.setTextColor(getResources().getColor(R.color.red));
+        }
     }
-
 }

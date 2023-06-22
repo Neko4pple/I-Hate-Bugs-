@@ -14,7 +14,6 @@ import android.widget.VideoView;
 
 
 public class MainActivity extends AppCompatActivity {
-    private int coinCount = 1000;
     private TextView coinTextView;
     private static final int GAME_ACTIVITY_REQUEST_CODE = 0;
 
@@ -26,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        CoinStack coinStack = new CoinStack(this);
+        //coinStack.setCoin(100000);
         videoView = findViewById(R.id.videoview);
         Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.start);
         videoView.setVideoURI(uri);
@@ -41,13 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button startBtn = findViewById(R.id.startBtn);
         Button shopButton = findViewById(R.id.shop);
-        Log.i("MainActivity", "1");
+
         startBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, GameActivity.class);
-                intent.putExtra("coinCount", coinCount); // 코인 수를 GameActivity로 전달
+                intent.putExtra("coinCount", coinStack.getCoin()); // 코인 수를 GameActivity로 전달
                 startActivityForResult(intent, 0);
             }
         });
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(MainActivity.this, ShopActivity.class);
-                intent.putExtra("coinCount", coinCount);
+
                 startActivity(intent);
             }
         });
