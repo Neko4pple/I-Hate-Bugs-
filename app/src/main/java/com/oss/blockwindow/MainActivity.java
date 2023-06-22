@@ -115,4 +115,4 @@ public class MainActivity extends AppCompatActivity {
 
     public void ShopActivity(View view) {
     }
-}
+} //코인 연동

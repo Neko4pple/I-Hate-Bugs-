@@ -309,4 +309,4 @@ public class GameActivity extends AppCompatActivity {
         editor.putInt("coinCount", cn);
         editor.apply();
     }
-}
+} //코인 연동

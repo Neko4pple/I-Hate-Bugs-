@@ -24,4 +24,4 @@ public class Ranking implements Comparable<Ranking> {
         else
             return 1;
     }
-}
+} //확인 완료

@@ -113,4 +113,4 @@ public class ResultActivity extends AppCompatActivity {
             }
         });
     }
-}
+} //연동 끝

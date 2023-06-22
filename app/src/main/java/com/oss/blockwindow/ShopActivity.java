@@ -122,4 +122,4 @@ public class ShopActivity extends AppCompatActivity {
 
         finish();
     }
-}
+} //코인 연동
