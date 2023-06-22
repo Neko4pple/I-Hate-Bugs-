@@ -290,7 +290,6 @@ public class GameActivity extends AppCompatActivity {
         if (bugCount >= 5 && bugCount < 10) {
             isInFever = true;
             score.setText("Point : " + String.valueOf(sc += 200));
-            feverDuration = 5;
             score.setTextColor(getResources().getColor(R.color.yellow));
         } else if (bugCount >= 10 && bugCount < 15) {
             isInFever = true;
