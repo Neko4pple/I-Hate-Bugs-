@@ -100,7 +100,7 @@ public class GameActivity extends AppCompatActivity {
             });
 
         }
-        time.setText("Time : 60");
+        time.setText("Time : 20");
         score.setText("Point : 0");
 
         new Thread(new Timer()).start();
@@ -158,7 +158,7 @@ public class GameActivity extends AppCompatActivity {
     };
 
     public class Timer implements Runnable {
-        final int TIME = 60;
+        final int TIME = 20;
 
         @Override
         public void run() {
