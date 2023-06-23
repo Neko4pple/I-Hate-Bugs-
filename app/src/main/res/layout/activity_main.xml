@@ -1,125 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="730dp"
     android:background="@drawable/background">
-
-    <!--    <TextView-->
-<!--        android:id="@+id/title_tv"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginTop="150dp"-->
-<!--        android:layout_marginBottom="32dp"-->
-<!--        android:rotationX="0"-->
-<!--        android:text="방충망을 막아라!"-->
-<!--        android:textColor="#fed231"-->
-<!--        android:textSize="35dp"-->
-<!--        android:textStyle="italic" />-->
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/info_ly"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/title_tv"-->
-<!--        android:layout_marginLeft="32dp"-->
-<!--        android:layout_marginRight="32dp"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_marginBottom="4dp"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <ImageView-->
-<!--                android:layout_width="64dp"-->
-<!--                android:layout_height="64dp"-->
-<!--                android:layout_marginRight="16dp"-->
-<!--                android:src="@drawable/mole" />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="+200 point "-->
-<!--                android:textColor="#000000"-->
-<!--                android:textSize="22sp"-->
-<!--                android:textStyle="bold" />-->
-
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="70dp"-->
-<!--            android:layout_marginBottom="4dp"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <ImageView-->
-<!--                android:layout_width="64dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_marginRight="16dp"-->
-<!--                android:src="@drawable/mole1" />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="70dp"-->
-<!--                android:text="-100 point "-->
-<!--                android:textColor="#ec1c24"-->
-<!--                android:textSize="22sp"-->
-<!--                android:textStyle="bold" />-->
-
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="70dp"-->
-<!--            android:layout_marginBottom="4dp"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <ImageView-->
-<!--                android:layout_width="64dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_marginRight="16dp"-->
-<!--                android:src="@drawable/rabbit" />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="-1 life"-->
-<!--                android:textColor="#ec1c24"-->
-<!--                android:textSize="22sp"-->
-<!--                android:textStyle="bold" />-->
-
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="70dp"-->
-<!--            android:layout_marginBottom="4dp"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <ImageView-->
-<!--                android:layout_width="64dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_marginRight="16dp"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                android:src="@drawable/coin" />-->
-
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="#ec1c24"-->
-<!--                android:textSize="22sp"-->
-<!--                android:textStyle="bold" />-->
-
-<!--        </LinearLayout>-->
-
-<!--    </LinearLayout>-->
 
     <VideoView
         android:id="@+id/videoview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="730dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="-5dp"

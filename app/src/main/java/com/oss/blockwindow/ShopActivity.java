@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ShopActivity extends AppCompatActivity {
-    private static final int ITEM_EXTRA_LIFE = 5000;
+    private static final int ITEM_EXTRA_LIFE = 55000;
     private static final int ITEM_COIN_X2 = 15000;
     private static final int ITEM_SCORE_X2 = 5000;
 
@@ -39,7 +39,7 @@ public class ShopActivity extends AppCompatActivity {
         });
 
         TextView coinTextView = findViewById(R.id.coinTextView);
-        coinTextView.setText("Coins: " + coinStack.getCoin());
+        coinTextView.setText("Coin  " + coinStack.getCoin());
     }
 
     // 나머지 코드...

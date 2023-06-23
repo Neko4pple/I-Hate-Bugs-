@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="730dp"
     android:background="@drawable/background_shop">
     <TextView
         android:id="@+id/coinTextView"
@@ -13,8 +13,9 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
         android:text="coins_0"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="22sp" />
 
 
     <Button
