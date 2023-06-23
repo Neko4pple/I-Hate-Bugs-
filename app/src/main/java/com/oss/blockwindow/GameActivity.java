@@ -35,6 +35,7 @@ public class GameActivity extends AppCompatActivity {
     public static final int ran[] = {R.drawable.up_bug1, R.drawable.up_bird1, R.drawable.up_bug2, R.drawable.coin};
     int sc = 0, plusScore = 100;
     int cn = 0, plusCoin = 50;
+    int item;
     int lifeCount = 5; // 라이프 개수 변수 추가
 
     final String TAG_Bug1 = "bug1";
@@ -54,11 +55,11 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
-        int item = getIntent().getIntExtra("whichItem",-1);
+        item = getIntent().getIntExtra("whichItem",-1);
         if(item == 0) {
             plusScore = 200;
         } if (item == 1) {
-            plusCoin = 10;
+            plusCoin = 250;
         }
 
         coin = findViewById(R.id.coin_tv);
@@ -121,7 +122,21 @@ public class GameActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             for (int i = 0; i < 5; i++) {
                 int index = (int) (Math.random() * 4);
+                if (item == 1) {
+                    int flag = 0;
+                    flag = (int) (Math.random() * 10);
+                    if (flag < 1) {
+                        index = 0;
+                    } else if (flag < 2) {
+                        index = 1;
+                    }  else if (flag < 3) {
+                        index = 2;
+                    } else {
+                        index = 3;
+                    }
+                }
                 imgViewArr[msg.arg1].setImageResource(ran[index]);
+
                 if (index == 0) {
                     imgViewArr[msg.arg1].setTag(TAG_Bug1);
                 } else if (index == 1) {

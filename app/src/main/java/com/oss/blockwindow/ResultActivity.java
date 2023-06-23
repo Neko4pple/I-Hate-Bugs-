@@ -10,13 +10,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Stack;
+
 public class ResultActivity extends AppCompatActivity {
 
     Button bt_replay;
     TextView tv_finalScore;
     TextView tv_finalCoin;
+    TextView tv_totalCoin;
     TextView tv_rankId;
     TextView tv_rankScore;
+    TextView tv_highScore;
     EditText et_id;
     Button bt_save;
 
@@ -38,11 +42,9 @@ public class ResultActivity extends AppCompatActivity {
         bt_replay=findViewById(R.id.btn_replay);
         tv_finalScore=findViewById(R.id.tv_finalScore);
         tv_finalCoin=findViewById(R.id.tv_finalCoin);
-        et_id = findViewById(R.id.id);
-        bt_save = findViewById(R.id.save);
-        tv_rankId = findViewById(R.id.tv_rankid);
-        tv_rankScore = findViewById(R.id.tv_rankscore);
         bt_main = findViewById(R.id.bt_main);
+        tv_highScore = findViewById(R.id.tv_HighScore);
+        tv_totalCoin = findViewById(R.id.tv_totalCoin);
 
 
         score = getIntent().getIntExtra("score",-1);
@@ -51,51 +53,16 @@ public class ResultActivity extends AppCompatActivity {
         CoinStack coinStack = new CoinStack(this);
         coinStack.setCoin(coinStack.getCoin()+coin);
 
+        HighScoreStack scoreStack = new HighScoreStack(this);
+        int temp = scoreStack.getHighScore();
+        if(score > temp) {
+            scoreStack.setHighscore(score);
+        }
+
         tv_finalScore.setText(String.valueOf(score));
         tv_finalCoin.setText(String.valueOf(coin));
-
-        sharedPreferences = getSharedPreferences("id", MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-
-        spf = getSharedPreferences("spfScore",MODE_PRIVATE);
-        editor2 = spf.edit();
-
-
-        tv_rankId.setText(sharedPreferences.getString("id",""));
-        tv_rankScore.setText(spf.getInt("spfscore",0)+"");
-
-
-        bt_save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-
-                //tv_rankScore.setText(spf.getString("spfscore",""));
-
-                if(spf.getInt("spfscore",0) < score){ //내점수가 저번 점수보다 크면
-                    editor.putString("id",et_id.getText().toString()).commit();
-                    editor.apply();
-
-                    editor2.putInt("spfscore",score).commit(); //반영의 commit(). 현재상태 저장
-                    editor2.apply();
-
-                }
-
-
-                tv_rankId.setText(sharedPreferences.getString("id",""));
-                tv_rankScore.setText(spf.getInt("spfscore",0)+"");
-
-
-
-
-            }
-        });
-
-
-
-
+        tv_highScore.setText(String.valueOf(scoreStack.getHighScore()));
+        tv_totalCoin.setText(String.valueOf(coinStack.getCoin()));
 
 
         bt_replay.setOnClickListener(new View.OnClickListener(){
